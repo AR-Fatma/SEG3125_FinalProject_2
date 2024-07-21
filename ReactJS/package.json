@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "react-bootstrap": "^2.10.4",
+    "react-datepicker": "^7.2.0",
+    "react-router-dom": "^6.24.1",
+    "styled-components": "^6.1.11"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  }
+}

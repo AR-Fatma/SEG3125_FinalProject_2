@@ -1,0 +1,26 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: #97A778;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Oldenburg', sans-serif;
+}
+
+.card-title {
+  font-family: 'Oldenburg', sans-serif;
+  font-size: 24px;
+}
+
+.card-text {
+  font-family: 'Oldenburg', sans-serif;
+  font-size: 18px;
+}
+
+.btn-danger {
+  background-color: #F05D5D;
+  border-color: #F05D5D;
+}
