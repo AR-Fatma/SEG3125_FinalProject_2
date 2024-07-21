@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import '../App.css'; // Ensure your CSS is updated to support the new styles
 
 const Booking = () => {
   const [startDate, setStartDate] = React.useState(new Date());
@@ -12,7 +13,14 @@ const Booking = () => {
   };
 
   return (
-    <div style={{ backgroundColor: '#97A778', minHeight: '100vh', padding: '50px 0' }}>
+    <div className="booking-container">
+      <video className="background-video" autoPlay loop muted>
+        <source src="/videos/3209148-uhd_3840_2160_25fps.mp4" type="video/mp4" />
+        <source src="/videos/5645137-hd_1080_1920_25fps.mp4" type="video/mp4" />
+        <source src="/videos/istockphoto-1181670894-640_adpp_is.mp4" type="video/mp4" />
+        <source src="/videos/istockphoto-1395753609-640_adpp_is.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <Container>
         <h1 className="text-center mb-4" style={{ fontFamily: 'Oldenburg', color: '#fff' }}>Booking</h1>
         <Row className="justify-content-center">

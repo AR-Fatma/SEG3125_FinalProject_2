@@ -13,6 +13,9 @@ h1, p {
 
 .navbar {
   background-color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
 }
 
 .navbar-brand {
@@ -21,10 +24,41 @@ h1, p {
   color: #F05D5D;
 }
 
+.nav {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin-left: 20px;
+}
+
 .nav-link {
   color: #F05D5D !important;
   font-family: 'Oldenburg', sans-serif;
   font-size: 18px;
+  text-decoration: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.header, .footer {
+  width: 100%;
+  text-align: center;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .popular-recipes-container {
@@ -96,3 +130,75 @@ h1, p {
   color: #FFFFFF;
 }
 
+/* New styles for Booking component */
+
+.booking-container {
+  text-align: center;
+  padding: 40px;
+  position: relative;
+  overflow: hidden; /* Ensure the video doesn't overflow */
+}
+
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.booking-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.booking-form label {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.booking-form span {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #fff;
+}
+
+.booking-input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #F05D5D;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.booking-button {
+  background-color: #F05D5D;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.booking-button:hover {
+  background-color: #d04a4a;
+}
