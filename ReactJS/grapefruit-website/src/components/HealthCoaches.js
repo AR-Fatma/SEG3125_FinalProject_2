@@ -56,7 +56,7 @@ const HealthCoaches = () => {
   };
 
   return (
-    <div style={{ backgroundColor: '#97A778', minHeight: '100vh', padding: '50px 0', color: '#FFFFFF', width: '100vw', margin: '0' }}>
+    <div style={{ backgroundColor: '#6B8F71', minHeight: '100vh', padding: '50px 0', color: '#FFFFFF', width: '100vw', margin: '0' }}>
       <Container>
         <h1 className="text-center" style={{ fontFamily: 'Oldenburg', marginBottom: '30px' }}>Health Coaches</h1>
         {!selectedCoach ? (

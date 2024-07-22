@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import nutritionImage from '../assets/20 Foods High in Antioxidants.jpg';
@@ -8,8 +8,8 @@ import mindfulnessImage from '../assets/Discover the Best Mindfulness Apps to Tr
 const Container = styled.div`
   text-align: center;
   padding: 20px;
-  background-color: #F9F9F6;
-  color: #333;
+  background-color: #6B8F71; /* Light Gray background */
+  color: #2E8B57; /* Dark Green text */
 `;
 
 const ClassesContainer = styled.div`
@@ -20,7 +20,7 @@ const ClassesContainer = styled.div`
 `;
 
 const ClassCard = styled.div`
-  background-color: #8B8B8B;
+  background-color: #2C5234; 
   padding: 20px;
   border-radius: 10px;
   width: 30%;
@@ -38,80 +38,137 @@ const ClassImage = styled.img`
 `;
 
 const ClassTitle = styled.h3`
-  color: #F05D5D;
+  color: #FF6347; /* Grapefruit Red for the title */
   margin: 10px 0;
 `;
 
 const ClassDescription = styled.p`
-  color: #fff;
+  color: #FFFFFF; /* White for the description text */
   text-align: left;
 `;
 
 const BookNowButton = styled.button`
   margin-top: 10px;
   padding: 10px 20px;
-  background-color: #F05D5D;
+  background-color: #FF6347; /* Grapefruit Red for the button */
   border: none;
   color: #fff;
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
   &:hover {
-    background-color: #D04C4C;
+    background-color: #B22222; /* Deep Red on hover */
+  }
+`;
+
+const TranslateButton = styled.button`
+  margin: 20px;
+  padding: 10px 20px;
+  background-color: #FF6347; /* Grapefruit Red for the button */
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: #B22222; /* Deep Red on hover */
   }
 `;
 
 const Classes = () => {
+  const [language, setLanguage] = useState('en');
   const navigate = useNavigate();
 
   const handleBookNow = (className) => {
     navigate('/booking', { state: { className } });
   };
 
+  const toggleLanguage = () => {
+    setLanguage(language === 'en' ? 'es' : 'en');
+  };
+
+  const classesContent = {
+    en: {
+      title: 'Upcoming Classes',
+      description: 'These are the different types of classes that we offer:',
+      classes: [
+        {
+          image: mindfulnessImage,
+          title: 'Mindfulness and Stress Management',
+          trainer: 'Trainer: Sarah Lee (Wellness Coach)',
+          description: 'Techniques and practices to manage stress and promote mental well-being.',
+          availability: 'Availability: Mondays and Wednesdays at 8:00 AM and 5:00 PM.',
+        },
+        {
+          image: strengthImage,
+          title: 'Strength Training 101',
+          trainer: 'Trainer: Emily Johnson (Certified Fitness Trainer)',
+          description: "A beginner's guide to strength training, focusing on proper techniques and building a solid foundation.",
+          availability: 'Availability: Mondays and Wednesdays at 9:00 AM and 6:00 PM.',
+        },
+        {
+          image: nutritionImage,
+          title: 'Nutrition for Weight Loss',
+          trainer: 'Trainer: Jane Smith (Certified Nutritionist)',
+          description: 'Learn how to create a balanced diet plan that helps you lose weight in a healthy and sustainable way.',
+          availability: 'Availability: Mondays and Wednesdays at 10:00 AM and 2:00 PM.',
+        },
+      ],
+    },
+    es: {
+      title: 'Clases Próximas',
+      description: 'Estos son los diferentes tipos de clases que ofrecemos:',
+      classes: [
+        {
+          image: mindfulnessImage,
+          title: 'Manejo de Estrés y Mindfulness',
+          trainer: 'Entrenadora: Sarah Lee (Coach de Bienestar)',
+          description: 'Técnicas y prácticas para manejar el estrés y promover el bienestar mental.',
+          availability: 'Disponibilidad: Lunes y Miércoles a las 8:00 AM y 5:00 PM.',
+        },
+        {
+          image: strengthImage,
+          title: 'Entrenamiento de Fuerza 101',
+          trainer: 'Entrenadora: Emily Johnson (Entrenadora Certificada de Fitness)',
+          description: 'Una guía para principiantes sobre entrenamiento de fuerza, enfocándose en técnicas adecuadas y construcción de una base sólida.',
+          availability: 'Disponibilidad: Lunes y Miércoles a las 9:00 AM y 6:00 PM.',
+        },
+        {
+          image: nutritionImage,
+          title: 'Nutrición para Pérdida de Peso',
+          trainer: 'Entrenadora: Jane Smith (Nutricionista Certificada)',
+          description: 'Aprende cómo crear un plan de dieta balanceada que te ayude a perder peso de manera saludable y sostenible.',
+          availability: 'Disponibilidad: Lunes y Miércoles a las 10:00 AM y 2:00 PM.',
+        },
+      ],
+    },
+  };
+
+  const content = classesContent[language];
+
   return (
     <Container>
-      <h1>Upcoming Classes</h1>
-      <p>These are the different types of classes that we offer:</p>
+      <TranslateButton onClick={toggleLanguage}>
+        {language === 'en' ? 'Traducir a Español' : 'Translate to English'}
+      </TranslateButton>
+      <h1>{content.title}</h1>
+      <p>{content.description}</p>
       <ClassesContainer>
-        <ClassCard>
-          <ClassImage src={mindfulnessImage} alt="Person practicing mindfulness by a lake" />
-          <ClassTitle>Mindfulness and Stress Management</ClassTitle>
-          <ClassDescription><strong>Trainer:</strong> Sarah Lee (Wellness Coach)</ClassDescription>
-          <ClassDescription><strong>Description:</strong> Techniques and practices to manage stress and promote mental well-being.</ClassDescription>
-          <ClassDescription><strong>Availability:</strong> Mondays and Wednesdays at 8:00 AM and 5:00 PM.</ClassDescription>
-          <BookNowButton 
-            onClick={() => handleBookNow('Mindfulness and Stress Management')}
-            aria-label="Book Now for Mindfulness and Stress Management"
-          >
-            Book Now
-          </BookNowButton>
-        </ClassCard>
-        <ClassCard>
-          <ClassImage src={strengthImage} alt="Person performing strength training in a gym" />
-          <ClassTitle>Strength Training 101</ClassTitle>
-          <ClassDescription><strong>Trainer:</strong> Emily Johnson (Certified Fitness Trainer)</ClassDescription>
-          <ClassDescription><strong>Description:</strong> A beginner's guide to strength training, focusing on proper techniques and building a solid foundation.</ClassDescription>
-          <ClassDescription><strong>Availability:</strong> Mondays and Wednesdays at 9:00 AM and 6:00 PM.</ClassDescription>
-          <BookNowButton 
-            onClick={() => handleBookNow('Strength Training 101')}
-            aria-label="Book Now for Strength Training 101"
-          >
-            Book Now
-          </BookNowButton>
-        </ClassCard>
-        <ClassCard>
-          <ClassImage src={nutritionImage} alt="Various nutritious foods arranged on a table" />
-          <ClassTitle>Nutrition for Weight Loss</ClassTitle>
-          <ClassDescription><strong>Trainer:</strong> Jane Smith (Certified Nutritionist)</ClassDescription>
-          <ClassDescription><strong>Description:</strong> Learn how to create a balanced diet plan that helps you lose weight in a healthy and sustainable way.</ClassDescription>
-          <ClassDescription><strong>Availability:</strong> Mondays and Wednesdays at 10:00 AM and 2:00 PM.</ClassDescription>
-          <BookNowButton 
-            onClick={() => handleBookNow('Nutrition for Weight Loss')}
-            aria-label="Book Now for Nutrition for Weight Loss"
-          >
-            Book Now
-          </BookNowButton>
-        </ClassCard>
+        {content.classes.map((classInfo, index) => (
+          <ClassCard key={index}>
+            <ClassImage src={classInfo.image} alt={classInfo.title} />
+            <ClassTitle>{classInfo.title}</ClassTitle>
+            <ClassDescription>{classInfo.trainer}</ClassDescription>
+            <ClassDescription>{classInfo.description}</ClassDescription>
+            <ClassDescription>{classInfo.availability}</ClassDescription>
+            <BookNowButton 
+              onClick={() => handleBookNow(classInfo.title)}
+              aria-label={`Book Now for ${classInfo.title}`}
+            >
+              {language === 'en' ? 'Book Now' : 'Reservar Ahora'}
+            </BookNowButton>
+          </ClassCard>
+        ))}
       </ClassesContainer>
     </Container>
   );
