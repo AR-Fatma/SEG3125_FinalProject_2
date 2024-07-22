@@ -1,72 +1,89 @@
-import React from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import '../App.css'; // Ensure your CSS is updated to support the new styles
+import React, { useState } from 'react';
+import '../App.css'; // Import the App.css file
+import backgroundImage from '../assets/Dehydrated.jpg'; // Import the image
 
 const Booking = () => {
-  const [startDate, setStartDate] = React.useState(new Date());
+  const [coach, setCoach] = useState('');
+  const [classType, setClassType] = useState('');
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [email, setEmail] = useState('');
 
-  const datePickerStyles = {
-    width: '100%',
-    height: 'auto',
+  const classTimes = {
+    'Nutrition for Weight Loss': ['10:00 AM', '2:00 PM', '4:00 PM'],
+    'Strength Training': ['9:00 AM', '11:00 AM', '1:00 PM'],
+    'Yoga for Beginners': ['8:00 AM', '12:00 PM', '6:00 PM'],
+  };
+
+  const handleBooking = (e) => {
+    e.preventDefault();
+    alert(`Booking confirmed for ${classType} with ${coach} on ${date} at ${time}. Confirmation sent to ${email}.`);
   };
 
   return (
-    <div className="booking-container">
-      <video className="background-video" autoPlay loop muted>
-        <source src="/videos/3209148-uhd_3840_2160_25fps.mp4" type="video/mp4" />
-        <source src="/videos/5645137-hd_1080_1920_25fps.mp4" type="video/mp4" />
-        <source src="/videos/istockphoto-1181670894-640_adpp_is.mp4" type="video/mp4" />
-        <source src="/videos/istockphoto-1395753609-640_adpp_is.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <Container>
-        <h1 className="text-center mb-4" style={{ fontFamily: 'Oldenburg', color: '#fff' }}>Booking</h1>
-        <Row className="justify-content-center">
-          <Col xs={12} md={6} lg={5}>
-            <div className="mb-4" style={datePickerStyles}>
-              <DatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-                inline
-              />
-            </div>
-          </Col>
-          <Col xs={12} md={6} lg={5}>
-            <Form>
-              <Form.Group controlId="formCoach" className="mb-3">
-                <Form.Label style={{ color: '#fff' }}>Select Coach</Form.Label>
-                <Form.Control as="select">
-                  <option>Jane Smith</option>
-                  <option>Emily Johnson</option>
-                  <option>Sarah Lee</option>
-                </Form.Control>
-              </Form.Group>
-
-              <Form.Group controlId="formClass" className="mb-3">
-                <Form.Label style={{ color: '#fff' }}>Select Class</Form.Label>
-                <Form.Control as="select">
-                  <option>Nutrition for Weight Loss</option>
-                  <option>Strength Training 101</option>
-                  <option>Mindfulness and Stress Management</option>
-                </Form.Control>
-              </Form.Group>
-
-              <Form.Group controlId="formEmail" className="mb-3">
-                <Form.Label style={{ color: '#fff' }}>Enter Email</Form.Label>
-                <Form.Control type="email" placeholder="example@fandf.com" />
-              </Form.Group>
-
-              <div className="d-grid gap-2">
-                <Button variant="danger" size="lg" style={{ backgroundColor: '#F05D5D', borderColor: '#F05D5D' }}>
-                  Book Now
-                </Button>
-              </div>
-            </Form>
-          </Col>
-        </Row>
-      </Container>
+    <div
+      className="booking-container"
+      style={{ 
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        minHeight: '100vh'
+      }}
+    >
+      <div className="booking-content">
+        <h1 className="booking-title">Booking</h1>
+        <form className="booking-form" onSubmit={handleBooking}>
+          <label>
+            <span>Coach</span>
+            <select value={coach} onChange={(e) => setCoach(e.target.value)} className="booking-input">
+              <option value="" disabled>Select Coach</option>
+              <option value="Jane Smith">Jane Smith</option>
+              <option value="John Doe">John Doe</option>
+              <option value="Emily Davis">Emily Davis</option>
+            </select>
+          </label>
+          <label>
+            <span>Class</span>
+            <select value={classType} onChange={(e) => setClassType(e.target.value)} className="booking-input">
+              <option value="" disabled>Select Class</option>
+              <option value="Nutrition for Weight Loss">Nutrition for Weight Loss</option>
+              <option value="Strength Training">Strength Training</option>
+              <option value="Yoga for Beginners">Yoga for Beginners</option>
+            </select>
+          </label>
+          <label>
+            <span>Select Date</span>
+            <input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              className="booking-input"
+            />
+          </label>
+          {classType && (
+            <label>
+              <span>Select Time</span>
+              <select value={time} onChange={(e) => setTime(e.target.value)} className="booking-input">
+                <option value="" disabled>Select Time</option>
+                {classTimes[classType].map((timeSlot, index) => (
+                  <option key={index} value={timeSlot}>{timeSlot}</option>
+                ))}
+              </select>
+            </label>
+          )}
+          <label>
+            <span>Enter Email</span>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="booking-input"
+            />
+          </label>
+          <button type="submit" className="booking-button">Book Now</button>
+        </form>
+      </div>
     </div>
   );
 };

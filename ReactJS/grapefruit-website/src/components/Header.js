@@ -1,32 +1,41 @@
-import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo.jpg';
+import '../App.css'; // Correct the path to App.css
 
 const Header = () => {
+  const [showSearch, setShowSearch] = useState(false);
+
+  const toggleSearch = () => {
+    setShowSearch(!showSearch);
+  };
+
   return (
-    <Navbar bg="light" expand="lg" className="shadow-sm">
-      <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
-        <img
-          src={logo}
-          width="40"
-          height="40"
-          className="d-inline-block align-top mr-2"
-          alt="Grapefruit logo"
-        />
-        <span style={{ fontFamily: 'Oldenburg', fontSize: '24px' }}>Grapefruit</span>
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto">
-          <Nav.Link as={Link} to="/health-coaches">Health Coaches</Nav.Link>
-          <Nav.Link as={Link} to="/popular-recipes">Popular Recipes</Nav.Link>
-          <Nav.Link as={Link} to="/upcoming-classes">Upcoming Classes</Nav.Link>
-          <Nav.Link as={Link} to="/booking">Booking</Nav.Link>
-          <Nav.Link as={Link} to="/contact-us">Contact Us</Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+    <nav className="navbar">
+      <Link to="/" className="navbar-brand">Grapefruit</Link>
+      <ul className="nav">
+        <li className="nav-item"><a href="#home" className="nav-link">Home</a></li>
+        <li className="nav-item"><a href="#health-coaches" className="nav-link">Health Coaches</a></li>
+        <li className="nav-item"><a href="#popular-recipes" className="nav-link">Popular Recipes</a></li>
+        <li className="nav-item"><a href="#classes" className="nav-link">Classes</a></li>
+        <li className="nav-item"><a href="#booking" className="nav-link">Booking</a></li>
+        <li className="nav-item"><a href="#contact-us" className="nav-link">Contact Us</a></li>
+      </ul>
+      <div className="search-container">
+        <button onClick={toggleSearch} className="search-button">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path fill="#97A778" d="M10,18a8,8,0,1,1,8-8A8,8,0,0,1,10,18ZM10,4A6,6,0,1,0,16,10,6,6,0,0,0,10,4Z"></path>
+            <path fill="#97A778" d="M21,21a1,1,0,0,1-.71-.29l-5-5a1,1,0,0,1,1.42-1.42l5,5A1,1,0,0,1,21,21Z"></path>
+          </svg>
+        </button>
+        {showSearch && (
+          <input
+            type="text"
+            placeholder="Search..."
+            className="search-input"
+          />
+        )}
+      </div>
+    </nav>
   );
 };
 
