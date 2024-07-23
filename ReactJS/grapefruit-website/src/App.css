@@ -179,6 +179,45 @@ h1, p {
   font-size: 18px;
   color: #FFFFFF;
 }
+/* Recipe Detail Container */
+.recipe-detail-container {
+  padding: 20px;
+  background-color: #6B8F71; /* Background color matching the body */
+  color: #FFFFFF;
+  max-width: 800px; /* Maximum width to keep content centered */
+  margin: 0 auto; /* Center the container */
+}
+
+.recipe-detail-container h1 {
+  font-size: 36px;
+  color: #F05D5D; /* Title color */
+  margin-bottom: 20px;
+}
+
+.recipe-detail-container img {
+  width: 100%;
+  max-width: 600px; /* Ensures the image is responsive */
+  height: auto;
+  display: block;
+  margin: 0 auto 20px; /* Center image with margin */
+}
+
+.recipe-detail-container h2 {
+  font-size: 28px;
+  color: #F05D5D; /* Subheading color */
+  margin-top: 20px;
+}
+
+.recipe-detail-container ul,
+.recipe-detail-container ol {
+  font-size: 18px;
+  color: #FFFFFF; /* Text color */
+  margin-left: 20px;
+}
+
+.recipe-detail-container li {
+  margin-bottom: 10px;
+}
 
 /* New styles for Booking component */
 .booking-container {
@@ -382,4 +421,54 @@ html {
 
 section {
   padding: 10px 0; /* Adjust as needed for spacing */
+}
+/* Existing CSS */
+
+/* New styles for Help page */
+.help-container {
+  background-color: #83c080; /* Light background color for better readability */
+  padding: 40px;
+  border-radius: 10px;
+  max-width: 800px; /* Center the help content */
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for a professional look */
+}
+
+.help-title {
+  font-size: 36px;
+  color: #6B8F71; /* Primary color for title */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.help-subtitle {
+  font-size: 24px;
+  color: #F05D5D; /* Secondary color for subtitles */
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.help-section p,
+.help-section ul {
+  font-size: 18px;
+  color: #333; /* Dark text color for better readability */
+  line-height: 1.6; /* Increased line height for better readability */
+}
+
+.help-link {
+  color: #F05D5D;
+  text-decoration: none;
+}
+
+.help-link:hover {
+  text-decoration: underline;
+}
+
+.help-section ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.help-section ul li {
+  margin-bottom: 10px;
 }

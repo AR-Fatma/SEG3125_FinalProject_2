@@ -5,7 +5,6 @@ import toast from '../assets/toast.jpg';
 import bananaBites from '../assets/banana-bites.jpg';
 import springRolls from '../assets/spring-rolls.jpg';
 import buddhaBowl from '../assets/buddha-bowl.jpg';
-import teriyakiSalmonSushiBowl from '../assets/teriyaki-salmon-sushi-bowl.jpg';
 import '../App.css';
 
 const PopularRecipes = () => {
@@ -15,13 +14,18 @@ const PopularRecipes = () => {
     { name: 'Banana Bites', img: bananaBites, path: '/recipe/banana-bites', type: 'Snack' },
     { name: 'Spring Rolls', img: springRolls, path: '/recipe/spring-rolls', type: 'Appetizer' },
     { name: 'Buddha Bowl', img: buddhaBowl, path: '/recipe/buddha-bowl', type: 'Main' },
-    { name: 'Teriyaki Salmon Sushi Bowl', img: teriyakiSalmonSushiBowl, path: '/recipe/teriyaki-salmon-sushi-bowl', type: 'Main' }
   ];
 
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 
-  const handleShow = (recipe) => {
+  const handleRecipeClick = (recipe) => {
     setSelectedRecipe(recipe);
+    setTimeout(() => {
+      const element = document.getElementById('recipe-detail');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   return (
@@ -30,19 +34,18 @@ const PopularRecipes = () => {
       <p>To view recipes you can click on the picture.</p>
       <div className="recipe-grid">
         {recipes.map(recipe => (
-          <div key={recipe.name} className="recipe-card" onClick={() => handleShow(recipe)}>
+          <div key={recipe.name} className="recipe-card" onClick={() => handleRecipeClick(recipe)}>
             <img src={recipe.img} alt={recipe.name} className="recipe-image" />
             <div className="recipe-name">{recipe.name}</div>
           </div>
         ))}
       </div>
-
       {selectedRecipe && (
-        <div className="recipe-detail">
-          <h2>{selectedRecipe.name}</h2>
+        <div id="recipe-detail" className="recipe-detail">
+          <h1>{selectedRecipe.name}</h1>
           <img src={selectedRecipe.img} alt={selectedRecipe.name} className="recipe-detail-image" />
           <p>Type: {selectedRecipe.type}</p>
-          <Link to={selectedRecipe.path} className="btn btn-primary">View Full Recipe</Link>
+          <Link to={selectedRecipe.path} className="recipe-detail-link">View Full Recipe</Link>
         </div>
       )}
     </div>

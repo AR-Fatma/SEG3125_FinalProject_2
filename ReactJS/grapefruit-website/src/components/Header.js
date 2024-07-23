@@ -26,6 +26,7 @@ const Header = () => {
         <li className="nav-item"><a href="#classes" className="nav-link">Classes</a></li>
         <li className="nav-item"><a href="#booking" className="nav-link">Booking</a></li>
         <li className="nav-item"><a href="#contact-us" className="nav-link">Contact Us</a></li>
+        <li className="nav-item"><Link to="/help" className="nav-link">Help</Link></li> {/* Added Help link */}
       </ul>
       <div className="search-container">
         <input

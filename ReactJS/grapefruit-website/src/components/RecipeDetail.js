@@ -1,54 +1,99 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import parfait from '../assets/parfait.jpg';
+import toast from '../assets/toast.jpg';
+import bananaBites from '../assets/banana-bites.jpg';
+import springRolls from '../assets/spring-rolls.jpg';
+import buddhaBowl from '../assets/buddha-bowl.jpg';
+import '../App.css';
 
 const recipeData = {
-  1: {
-    title: "Parfait",
-    image: "/assets/parfait.jpg",
-    description: "A delicious parfait.",
-    ingredients: ["Yogurt", "Granola", "Berries"],
-    instructions: ["Layer yogurt, granola, and berries.", "Serve immediately."]
+  'parfait': {
+    title: 'Parfait',
+    image: parfait,
+    description: 'Delicious and healthy parfait.',
+    ingredients: [
+      'Yogurt',
+      'Granola',
+      'Mixed Berries'
+    ],
+    instructions: [
+      'Layer yogurt, granola, and berries in a glass.',
+      'Repeat layers.',
+      'Serve immediately.'
+    ]
   },
-  2: {
-    title: "Toast",
-    image: "/assets/toast.jpg",
-    description: "Healthy toast options.",
-    ingredients: ["Bread", "Avocado", "Egg"],
-    instructions: ["Toast the bread.", "Top with avocado and egg."]
+  'toast': {
+    title: 'Toast',
+    image: toast,
+    description: 'Simple and tasty toast.',
+    ingredients: [
+      'Bread',
+      'Avocado',
+      'Tomato'
+    ],
+    instructions: [
+      'Toast the bread.',
+      'Spread avocado on toast.',
+      'Top with tomato slices.',
+      'Serve immediately.'
+    ]
   },
-  3: {
-    title: "Banana Bites",
-    image: "/assets/banana-bites.jpg",
-    description: "Chocolate Peanut Butter Banana Bites.",
-    ingredients: ["Bananas", "Chocolate", "Peanut Butter"],
-    instructions: ["Slice bananas.", "Spread peanut butter.", "Dip in chocolate."]
+  'banana-bites': {
+    title: 'Banana Bites',
+    image: bananaBites,
+    description: 'Delicious and easy to make chocolate peanut butter banana bites.',
+    ingredients: [
+      'Banana',
+      'Peanut Butter',
+      'Chocolate Chips'
+    ],
+    instructions: [
+      'Slice banana.',
+      'Spread peanut butter on banana slices.',
+      'Top with chocolate chips.',
+      'Serve immediately.'
+    ]
   },
-  4: {
-    title: "Spring Rolls",
-    image: "/assets/spring-rolls.jpg",
-    description: "Fresh Spring Rolls.",
-    ingredients: ["Rice paper wrappers", "Vegetables", "Shrimp or tofu"],
-    instructions: ["Soak rice paper.", "Fill with vegetables and shrimp/tofu.", "Roll tightly and serve."]
+  'spring-rolls': {
+    title: 'Spring Rolls',
+    image: springRolls,
+    description: 'Perfect summer fresh spring rolls.',
+    ingredients: [
+      'Rice paper wrappers',
+      'Fresh vegetables (lettuce, carrots, cucumber, bell peppers)',
+      'Shrimp or tofu',
+      'Mint and basil leaves',
+      'Rice noodles'
+    ],
+    instructions: [
+      'Soak rice paper wrappers in warm water until soft.',
+      'Fill with fresh vegetables, shrimp or tofu, mint and basil leaves, and rice noodles.',
+      'Roll tightly and serve with dipping sauce.'
+    ]
   },
-  5: {
-    title: "Buddha Bowl",
-    image: "/assets/buddha-bowl.jpg",
-    description: "A nutritious Buddha Bowl.",
-    ingredients: ["Quinoa", "Chickpeas", "Vegetables"],
-    instructions: ["Cook quinoa.", "Mix with chickpeas and vegetables.", "Serve with dressing."]
+  'buddha-bowl': {
+    title: 'Buddha Bowl',
+    image: buddhaBowl,
+    description: 'Healthy and delicious Buddha bowl.',
+    ingredients: [
+      'Quinoa',
+      'Chickpeas',
+      'Avocado',
+      'Mixed Vegetables'
+    ],
+    instructions: [
+      'Cook quinoa according to package instructions.',
+      'Roast chickpeas and vegetables.',
+      'Assemble quinoa, chickpeas, and vegetables in a bowl.',
+      'Top with avocado.',
+      'Serve immediately.'
+    ]
   },
-  6: {
-    title: "Teriyaki Salmon Sushi Bowl",
-    image: "/assets/teriyaki-salmon-sushi-bowl.jpg",
-    description: "Teriyaki Salmon Sushi Bowl.",
-    ingredients: ["Salmon", "Rice", "Vegetables"],
-    instructions: ["Cook salmon with teriyaki sauce.", "Serve over rice with vegetables."]
-  }
-};
-
+}
 const RecipeDetail = () => {
-  const { id } = useParams();
-  const recipe = recipeData[id];
+  const { recipeId } = useParams();
+  const recipe = recipeData[recipeId];
 
   if (!recipe) {
     return <div>Recipe not found</div>;
@@ -57,15 +102,14 @@ const RecipeDetail = () => {
   return (
     <div className="recipe-detail-container">
       <h1>{recipe.title}</h1>
-      <img src={recipe.image} alt={recipe.title} className="recipe-detail-image" />
-      <p>{recipe.description}</p>
-      <h3>Ingredients:</h3>
+      <img src={recipe.image} alt={recipe.title} />
+      <h2>Ingredients:</h2>
       <ul>
         {recipe.ingredients.map((ingredient, index) => (
           <li key={index}>{ingredient}</li>
         ))}
       </ul>
-      <h3>Instructions:</h3>
+      <h2>Instructions:</h2>
       <ol>
         {recipe.instructions.map((instruction, index) => (
           <li key={index}>{instruction}</li>
